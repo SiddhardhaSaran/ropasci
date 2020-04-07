@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <script>
+        let choice = ['rock', 'paper', 'scissors']
+        // Your JavaScript goes here!
+        function getRandomInt() {
+            return Math.floor(Math.random() * 3);
+        }
+        function computerPlay() {
+            return choice[getRandomInt];
+        }
+
+        let playerSelection = prompt("What's your choice?")
+
+        function playRound(playerSelection, computerSelection) {
+
+            for (i = 0; i < choice.length; i++) {
+                if (playerSelection.toLowerCase() === choice[i]) {
+                    let compare
+                    if (i + 1 === 2) {
+                        compare = choice[0]
+                    }
+                    else {
+                        compare = choice[i + 1]
+
+                    }
+                    if (computerSelection === playerSelection) {
+                        console.log("It's a draw!.")
+                    }
+                    else if (computerSelection === compare) {
+                        console.log(`You loose. ${playerSelection} beats ${computerSelection}.Better luck next time.`)
+                    }
+                    else {
+                        console.log(`You Win.${playerSelection} beats ${computerSelection}.Hurray`);
+                    }
+                }
+            }
+        }
+        if (choice.includes(playerSelection))
+        {
+            computerSelection = computerPlay()
+            playRound(playerSelection,computerSelection)
+        }
+        else{
+            alert("Hey its a Rock Paper Scissors game. PLease input a valid choice.")
+        }
+
+
+
+    </script>
+</body>
+
+</html>
