@@ -14,45 +14,59 @@
             return Math.floor(Math.random() * 3);
         }
         function computerPlay() {
-            return choice[getRandomInt];
+            return choice[getRandomInt()];
         }
-
-        let playerSelection = prompt("What's your choice?")
+        let cscore = 0
+        let pscore = 0
 
         function playRound(playerSelection, computerSelection) {
+            let compare
+            if (playerSelection === 'rock') {
+                compare = 'paper'
+            }
+            else if (playerSelection === 'paper') {
+                compare = 'scissors'
+            }
+            else {
+                compare = 'rock'
+            }
+            if (computerSelection === playerSelection) {
+                alert("It's a draw!.")
+            }
+            else if (computerSelection === compare) {
+                alert(`You loose.Computer choose ${playerSelection} which beats ${computerSelection} choosen by player.Better luck next time.`)
+                cscore += 1
+            }
+            else {
+                alert(`You win.Player choose ${playerSelection} which beats ${computerSelection} choosen by computer.Hurray!!`)
+                pscore += 1
+            }
 
-            for (i = 0; i < choice.length; i++) {
-                if (playerSelection.toLowerCase() === choice[i]) {
-                    let compare
-                    if (i + 1 === 2) {
-                        compare = choice[0]
-                    }
-                    else {
-                        compare = choice[i + 1]
+        }
 
-                    }
-                    if (computerSelection === playerSelection) {
-                        console.log("It's a draw!.")
-                    }
-                    else if (computerSelection === compare) {
-                        console.log(`You loose. ${playerSelection} beats ${computerSelection}.Better luck next time.`)
-                    }
-                    else {
-                        console.log(`You Win.${playerSelection} beats ${computerSelection}.Hurray`);
-                    }
+        function game(rounds) {
+            for (i = 0; i < rounds; i++) {
+                let playerSelection = prompt("What's your choice?Valid choices are rock, paper and scissors").toLowerCase()
+                if (choice.includes(playerSelection)) {
+                    computerSelection = computerPlay()
+                    playRound(playerSelection, computerSelection)
+                }
+                else {
+                    i -= 1
+                    alert("Hey it's a Rock Paper Scissors game. Please input a valid choice.")
                 }
             }
+            if (pscore > cscore) {
+                alert(`You are the winner.You won ${pscore} whereas computer won ${cscore} out of 5 games`)
+            }
+            else if (cscore > pscore){
+                alert(`You lost.You won only ${pscore} whereas computer won ${cscore} out of 5 games`)
+            }
+            else{
+                alert("This game is a draw.")
+            }
         }
-        if (choice.includes(playerSelection))
-        {
-            computerSelection = computerPlay()
-            playRound(playerSelection,computerSelection)
-        }
-        else{
-            alert("Hey its a Rock Paper Scissors game. PLease input a valid choice.")
-        }
-
-
+        game(5)
 
     </script>
 </body>
