@@ -2,8 +2,8 @@ let choice = ['rock', 'paper', 'scissors']
 len = choice.length
 
 const buttons = document.querySelectorAll("button")
-buttons.forEach((button) => { 
-    button.addEventListener('click', function(e) {playgif(e.target.id)} )
+buttons.forEach((button) => {
+    button.addEventListener('click', function (e) { playgif(e.target.id) })
 })
 
 function playgif(path) {
@@ -19,14 +19,35 @@ function playgif(path) {
     playerimg.src = `./images/${path}.gif`
     playerimg.style.transform = "scaleX(-1)"
     compimg.src = `./images/${compselect}.gif`
-    
+
     div.appendChild(playerimg)
     div.appendChild(compimg)
+    delayresult(path, compselect)
 }
 
-function delayresult(){
-
+let delayrs
+function delayresult(path, compselect) {
+    //we are going to show and update the result only after the gif has finished playing
+    clearTimeout(delayrs)
+    delayrs = setTimeout(function () { result(path, compselect) }, 1200)
 }
+
+let rounds = 0
+function result(psel, csel) {
+    rounds += 1
+    rs = playRound(psel, csel)
+    const pscore = document.querySelector("#ps")
+    const cscore = document.querySelector("#cs")
+    console.log("This is wrong" + rs)
+    pscore.innerText = rs[0]
+    cscore.innerText = rs[1]
+    if (rounds === 5) {
+        finishgame(rs[0], rs[1], pscore, cscore)
+        pscor = 0
+        cscor = 0
+    }
+}
+
 
 function getRandomInt() {
     return Math.floor(Math.random() * len);
@@ -34,8 +55,8 @@ function getRandomInt() {
 function computerPlay() {
     return choice[getRandomInt()];
 }
-let cscore = 0
-let pscore = 0
+let pscor = 0
+let cscor = 0
 
 function playRound(playerSelection, computerSelection) {
     let compare = choice[(choice.indexOf(playerSelection) + 1) % len]
@@ -43,38 +64,33 @@ function playRound(playerSelection, computerSelection) {
         console.log("It's a draw!.")
     }
     else if (computerSelection === compare) {
-        console.log(`You loose.Computer choose ${playerSelection} which beats ${computerSelection} choosen by player.Better luck next time.`)
-        cscore += 1
+        //console.log(`You loose.Computer choose ${playerSelection} which beats ${computerSelection} choosen by player.Better luck next time.`)
+        cscor += 1
+
     }
     else {
-        console.log(`You win.Player choose ${playerSelection} which beats ${computerSelection} choosen by computer.Hurray!!`)
-        pscore += 1
+        //console.log(`You win.Player choose ${playerSelection} which beats ${computerSelection} choosen by computer.Hurray!!`)
+        pscor += 1
+
     }
-    return [pscore,cscore]
+    return [pscor, cscor]
 
 }
 
-function game(rounds) {
-    for (i = 0; i < rounds; i++) {
-        //let playerSelection = prompt("What's your choice? Valid choices are rock, paper and scissors").toLowerCase()
-        if (choice.includes(playerSelection)) {
-            computerSelection = computerPlay()
-            playRound(playerSelection, computerSelection)
-        }
-        else {
-            i -= 1
-            console.log("Hey it's a Rock Paper Scissors game. Please input a valid choice.")
-        }
+function finishgame(psco, csco, pscore, cscore) {
+    rounds = 0
+    console.log("This is right? " + pscor + cscor)
+    pscore.innerText = 0
+    cscore.innerText = 0
+    if (psco > csco) {
+        alert(`You are the winner.You won ${psco} whereas computer won ${csco} out of 5 games`)
     }
-    if (pscore > cscore) {
-        console.log(`You are the winner.You won ${pscore} whereas computer won ${cscore} out of 5 games`)
-    }
-    else if (cscore > pscore) {
-        console.log(`You lost.You won only ${pscore} whereas computer won ${cscore} out of 5 games`)
+    else if (csco > psco) {
+        alert(`You lost.You won only ${psco} whereas computer won ${csco} out of 5 games`)
     }
     else {
-        console.log("This game is a draw.")
+        alert("This game is a draw.")
     }
+
 }
 
-game(5)
