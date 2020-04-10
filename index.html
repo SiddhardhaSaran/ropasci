@@ -4,71 +4,36 @@
 <head>
     <title>Page Title</title>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
-    <script>
-        let choice = ['rock', 'paper', 'scissors']
-        // Your JavaScript goes here!
-        function getRandomInt() {
-            return Math.floor(Math.random() * 3);
-        }
-        function computerPlay() {
-            return choice[getRandomInt()];
-        }
-        let cscore = 0
-        let pscore = 0
 
-        function playRound(playerSelection, computerSelection) {
-            let compare
-            if (playerSelection === 'rock') {
-                compare = 'paper'
-            }
-            else if (playerSelection === 'paper') {
-                compare = 'scissors'
-            }
-            else {
-                compare = 'rock'
-            }
-            if (computerSelection === playerSelection) {
-                alert("It's a draw!.")
-            }
-            else if (computerSelection === compare) {
-                alert(`You loose.Computer choose ${playerSelection} which beats ${computerSelection} choosen by player.Better luck next time.`)
-                cscore += 1
-            }
-            else {
-                alert(`You win.Player choose ${playerSelection} which beats ${computerSelection} choosen by computer.Hurray!!`)
-                pscore += 1
-            }
+    <div class="game">
 
-        }
+        <button type="button" id="rock"></button>
+        <button type="button" id="paper"></button>
+        <button type="button" id="scissors"></button>
 
-        function game(rounds) {
-            for (i = 0; i < rounds; i++) {
-                let playerSelection = prompt("What's your choice?Valid choices are rock, paper and scissors").toLowerCase()
-                if (choice.includes(playerSelection)) {
-                    computerSelection = computerPlay()
-                    playRound(playerSelection, computerSelection)
-                }
-                else {
-                    i -= 1
-                    alert("Hey it's a Rock Paper Scissors game. Please input a valid choice.")
-                }
-            }
-            if (pscore > cscore) {
-                alert(`You are the winner.You won ${pscore} whereas computer won ${cscore} out of 5 games`)
-            }
-            else if (cscore > pscore){
-                alert(`You lost.You won only ${pscore} whereas computer won ${cscore} out of 5 games`)
-            }
-            else{
-                alert("This game is a draw.")
-            }
-        }
-        game(5)
+    </div>
+    <div class="score">
+        <div class='p'>
+            <p> Player </p>
+            <p id='ps'> 0 </p>
 
-    </script>
+        </div>
+        <div class='c'>
+            <p> Computer </p>
+            <p id='cs'> 0 </p>
+
+        </div>
+    </div>
+
+    <div class="gif">
+
+    </div>
+
+    <script src="./scripts/script.js"> </script>
 </body>
 
 </html>

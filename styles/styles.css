@@ -1,0 +1,66 @@
+.game{
+   
+    display: flex;
+    justify-content: center;  
+    align-items: center;
+}
+
+#rock{
+    background-image: url( '../images/rps.png' ) ;
+    background-position: -19px 0px;
+    width: 175px;
+    height: 265px;
+    border: none;  
+}
+#paper{
+    background-image: url( '../images/rps.png' ) ;
+    background-position: -330px 0px;
+    width: 175px;
+    height: 265px;  
+    border: none;
+}
+
+#scissors{
+    background-image: url( '../images/rps.png' ) ;
+    background-position: -175px 0px;
+    width: 175px;
+    height: 265px;  
+    border: none;
+}
+
+.gif{
+    display:flex;
+    justify-content: center;
+    margin-top: -10px;
+    
+}
+.score{
+    display:flex;
+    justify-content: center;
+}
+
+p{
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+}
+.p {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-top: 5vh;
+
+}
+.c{
+    margin-right: 10vw;
+    margin-left: 10vw; 
+    margin-top: 5vh;
+}
+#ps{
+    padding-left: 20px;
+
+}
+#cs{
+    padding-left: 35px;
+
+}
+
+
